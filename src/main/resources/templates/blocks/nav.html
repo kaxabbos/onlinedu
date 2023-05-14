@@ -1,0 +1,19 @@
+<nav th:fragment="nav" class="navbar navbar-light navbar-expand navigation-clean">
+    <div class="container">
+        <a class="navbar-brand" href="/" style="font-size: 30px;">Onlinedu</a>
+        <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2"></button>
+        <div class="collapse navbar-collapse" id="navcol-2">
+            <ul class="navbar-nav me-auto" style="font-size: 24px;">
+                <li class="nav-item"><a class="nav-link btn btn-success" href="/stock">АКЦИЯ</a></li>
+                <li class="nav-item"><a class="nav-link btn btn-success" href="/subs">Доступные онлайн курсы</a></li>
+                <li th:if="${role == 'ADMIN'}" class="nav-item"><a class="nav-link btn btn-success" href="/users">Клиентская база</a></li>
+                <li th:if="${role == 'ADMIN'}" class="nav-item"><a class="nav-link btn btn-success" href="/stats">Статистика</a></li>
+                <li th:if="${role == 'CLIENT'}" class="nav-item"><a class="nav-link btn btn-success" href="/subs/my">Мои онлайн курсы</a></li>
+                <li th:if="${role == 'ADMIN'}" class="nav-item"><a class="nav-link btn btn-success" href="/progress">Продвижение учащихся</a></li>
+                <li th:if="${role == 'NOT'}" class="nav-item"><a class="nav-link btn btn-success" href="/login">Войдите профиль на учебной платформе</a></li>
+                <li th:if="${role == 'NOT'}" class="nav-item"><a class="nav-link btn btn-success" href="/reg">Создание профиля на учебной платформе</a></li>
+                <li th:if="${role != 'NOT'}" class="nav-item"><a class="nav-link btn btn-success" href="/logout">Выход</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>

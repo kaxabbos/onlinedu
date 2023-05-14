@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Главная</title>
+</head>
+<head th:insert="blocks/head :: head"></head>
+<body style="background: #94dee1">
+<div th:insert="blocks/nav :: nav"></div>
+<img src="/img/bg.jpg" width="100%">
+<section class="text-center testimonials">
+    <div class="container">
+        <iframe allowfullscreen="" frameborder="0"
+                src="https://www.youtube.com/embed/LL68s9Dg1p8?loop=1&amp;playlist=LL68s9Dg1p8"
+                style="margin-top: 15px;" width="75%" height="550px"></iframe>
+    </div>
+</section>
+<section class="text-center testimonials">
+    <div class="container">
+        <h2 class="mb-5">Наши специалисты</h2>
+        <div th:if="${role == 'MANAGER'}" class="row" style="margin: 10px -12px;">
+            <div class="col-lg-4 col-xl-12"><a class="btn btn-success" role="button" href="/teachers/add">Добавить
+                специалиста</a>
+                <div class="mx-auto testimonial-item mb-5 mb-lg-0"></div>
+            </div>
+        </div>
+        <div th:each="t : ${teachers}" class="row" style="margin-bottom: 10px;">
+            <div class="col">
+                <div class="mx-auto testimonial-item mb-5 mb-lg-0">
+                    <img class="rounded-circle img-fluid mb-3" th:src="'/img/' + ${t.file}">
+                    <h5 th:text="${t.name}"></h5>
+                </div>
+            </div>
+            <div class="col">
+                <p class="font-weight-light mb-0" style="text-align: left;font-size: 20px;">Тел: +<span
+                        th:text="${t.tel}"></span></p>
+                <p class="font-weight-light mb-0" style="text-align: left;font-size: 20px;">Количество учеников: <span
+                        th:text="${t.exp}"></span> </p>
+                <p class="font-weight-light mb-0" style="text-align: left;font-size: 20px;">Категория курсов: <span
+                        th:text="${t.spec}"></span></p>
+                <p class="font-weight-light mb-0" style="text-align: left;font-size: 20px;">О себе: <span
+                        th:text="${t.ach}"></span></p>
+                <p class="font-weight-light mb-0" style="text-align: left;font-size: 20px;">Почтовый адрес: <span
+                        th:text="${t.email}"></span></p>
+            </div>
+            <div th:if="${role == 'MANAGER'}" class="col" style="max-width: 270px;">
+                <a class="btn btn-success" role="button" style="margin-right: 15px;"
+                   th:href="'/teachers/edit/' + ${t.id}">Редактировать</a>
+                <a class="btn btn-danger" role="button" th:href="'/teachers/delete/' + ${t.id}">Удалить</a></div>
+        </div>
+    </div>
+</section>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/bs-init.js"></script>
+</body>
+
+</html>
